@@ -1,3 +1,3 @@
-module github.com/ibclabs/omnilayer-go
+module github.com/axengine/omnilayer-go
 
-go 1.12
+go 1.14

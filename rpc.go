@@ -1,6 +1,6 @@
 package omnilayer
 
-import "github.com/ibclabs/omnilayer-go/omnijson"
+import "github.com/axengine/omnilayer-go/omnijson"
 
 func (c *Client) GetBlockChainInfo() (omnijson.GetBlockChainInfoResult, error) {
 	return futureGetBlockChainInfo(c.do(omnijson.GetBlockChainInfoCommand{})).Receive()
@@ -64,4 +64,20 @@ func (c *Client) SignRawTransactionWithKey(cmd omnijson.SignRawTransactionWithKe
 
 func (c *Client) OmniGetBalance(cmd omnijson.OmniGetBalanceCommand) (omnijson.OmniGetBalanceResult, error) {
 	return futureOmniGetBalance(c.do(cmd)).Receive()
+}
+
+func (c *Client) OmniGetNewAddress(cmd omnijson.OmniGetNewAddressCommand) (omnijson.OmniGetNewAddressResult, error) {
+	return futureOmniGetNewAddress(c.do(cmd)).Receive()
+}
+
+func (c *Client) OmniSend(cmd omnijson.OmniSendCommand) (omnijson.OmniSendResult, error) {
+	return futureOmniSend(c.do(cmd)).Receive()
+}
+
+func (c *Client) OmniSendWithFee(cmd omnijson.OmniSendWithFeeCommand) (omnijson.OmniSendWithFeeResult, error) {
+	return futureOmniSendWithFee(c.do(cmd)).Receive()
+}
+
+func (c *Client) ValidAddress(cmd omnijson.ValidAddressCommand) (omnijson.ValidAddressResult, error) {
+	return futureValidAddress(c.do(cmd)).Receive()
 }

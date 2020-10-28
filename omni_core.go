@@ -2,8 +2,7 @@ package omnilayer
 
 import (
 	"encoding/json"
-
-	"github.com/ibclabs/omnilayer-go/omnijson"
+	"github.com/axengine/omnilayer-go/omnijson"
 )
 
 type futureOmniCreatePayloadSimpleSend chan *response
@@ -108,6 +107,62 @@ type futureOmniGetBalance chan *response
 
 func (f futureOmniGetBalance) Receive() (omnijson.OmniGetBalanceResult, error) {
 	var result omnijson.OmniGetBalanceResult
+
+	data, err := receive(f)
+	if err != nil {
+		return result, err
+	}
+
+	err = json.Unmarshal(data, &result)
+	return result, err
+}
+
+type futureOmniGetNewAddress chan *response
+
+func (f futureOmniGetNewAddress) Receive() (omnijson.OmniGetNewAddressResult, error) {
+	var result omnijson.OmniGetNewAddressResult
+
+	data, err := receive(f)
+	if err != nil {
+		return result, err
+	}
+
+	err = json.Unmarshal(data, &result)
+	return result, err
+}
+
+type futureOmniSend chan *response
+
+func (f futureOmniSend) Receive() (omnijson.OmniSendResult, error) {
+	var result omnijson.OmniSendResult
+
+	data, err := receive(f)
+	if err != nil {
+		return result, err
+	}
+
+	err = json.Unmarshal(data, &result)
+	return result, err
+}
+
+type futureOmniSendWithFee chan *response
+
+func (f futureOmniSendWithFee) Receive() (omnijson.OmniSendWithFeeResult, error) {
+	var result omnijson.OmniSendWithFeeResult
+
+	data, err := receive(f)
+	if err != nil {
+		return result, err
+	}
+
+	err = json.Unmarshal(data, &result)
+	return result, err
+}
+
+type futureValidAddress chan *response
+
+func (f futureValidAddress) Receive() (omnijson.ValidAddressResult, error) {
+	var result omnijson.ValidAddressResult
 
 	data, err := receive(f)
 	if err != nil {
