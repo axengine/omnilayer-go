@@ -37,7 +37,7 @@ func TestGetNewAddress(t *testing.T) {
 
 func TestValidAddress(t *testing.T) {
 	omni := createOmni()
-	ret, err := omni.ValidAddress(omnijson.ValidAddressCommand("moneyqMan7uh8FqdCA2BV5yZ8qVrc9ikLP"))
+	ret, err := omni.ValidAddress(omnijson.ValidAddressCommand("moneyqMan7uh8FqdCA2BV5yZ8qVrc9ikLP")) // 水龙头地址
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -46,7 +46,7 @@ func TestValidAddress(t *testing.T) {
 
 func TestGetBalance(t *testing.T) {
 	omni := createOmni()
-	ret, err := omni.OmniGetBalance(omnijson.OmniGetBalanceCommand{"2N9RjPfvmYx9ykhRvkz4DPHRPRFMEAyQqtY", 2})
+	ret, err := omni.OmniGetBalance(omnijson.OmniGetBalanceCommand{"2N1URX4Yn6y4NtHq7tSyyusYEEGLS7PFQDN", 2})
 	if err != nil {
 		t.Fatal(err)
 	}
