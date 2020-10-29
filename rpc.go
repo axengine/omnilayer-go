@@ -81,3 +81,7 @@ func (c *Client) OmniSendWithFee(cmd omnijson.OmniSendWithFeeCommand) (omnijson.
 func (c *Client) ValidAddress(cmd omnijson.ValidAddressCommand) (omnijson.ValidAddressResult, error) {
 	return futureValidAddress(c.do(cmd)).Receive()
 }
+
+func (c *Client) OmniDumpPrivkey(cmd omnijson.OmniDumpPrivkeyCommand) (omnijson.OmniDumpPrivkeyResult, error) {
+	return futureOmniDumpPrivkey(c.do(cmd)).Receive()
+}

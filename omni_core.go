@@ -172,3 +172,17 @@ func (f futureValidAddress) Receive() (omnijson.ValidAddressResult, error) {
 	err = json.Unmarshal(data, &result)
 	return result, err
 }
+
+type futureOmniDumpPrivkey chan *response
+
+func (f futureOmniDumpPrivkey) Receive() (omnijson.OmniDumpPrivkeyResult, error) {
+	var result omnijson.OmniDumpPrivkeyResult
+
+	data, err := receive(f)
+	if err != nil {
+		return result, err
+	}
+
+	err = json.Unmarshal(data, &result)
+	return result, err
+}

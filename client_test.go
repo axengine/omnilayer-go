@@ -1,6 +1,7 @@
 package omnilayer
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/axengine/omnilayer-go/omnijson"
 	"testing"
@@ -33,6 +34,16 @@ func TestGetNewAddress(t *testing.T) {
 	}
 	fmt.Println(ret)
 	// 2N1URX4Yn6y4NtHq7tSyyusYEEGLS7PFQDN
+}
+
+func TestDumpPrivkey(t *testing.T) {
+	omni := createOmni()
+	ret, err := omni.OmniDumpPrivkey(omnijson.OmniDumpPrivkeyCommand("2N1URX4Yn6y4NtHq7tSyyusYEEGLS7PFQDN"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(ret)
+	// cT1FBPXYe53yMnAWeEca2X5rQUJucyYgauJpDU5hrzdZyRtf2aKL
 }
 
 func TestValidAddress(t *testing.T) {
@@ -72,7 +83,9 @@ func TestFetchBlock(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		fmt.Println(tx)
+
+		bz, _ := json.Marshal(tx)
+		fmt.Println(string(bz))
 	}
 }
 
