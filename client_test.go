@@ -11,7 +11,7 @@ import (
 
 func createOmni() *Client {
 	omni := New(&ConnConfig{
-		Host:                 "192.168.10.10:18332",
+		Host:                 "192.168.10.33:18332",
 		Endpoint:             "",
 		User:                 "usdtuser_cs",
 		Pass:                 "usdtuser_cs",
@@ -92,6 +92,15 @@ func TestFetchBlock(t *testing.T) {
 func TestSend(t *testing.T) {
 	omni := createOmni()
 	ret, err := omni.OmniSend(omnijson.OmniSendCommand{"2N9RjPfvmYx9ykhRvkz4DPHRPRFMEAyQqtY", "2N1URX4Yn6y4NtHq7tSyyusYEEGLS7PFQDN", 2, "0.01"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(ret)
+}
+
+func TestSetTxFee(t *testing.T) {
+	omni := createOmni()
+	ret, err := omni.SetTxFee(omnijson.SetTxFeeCommand{0.0001})
 	if err != nil {
 		t.Fatal(err)
 	}

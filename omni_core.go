@@ -186,3 +186,17 @@ func (f futureOmniDumpPrivkey) Receive() (omnijson.OmniDumpPrivkeyResult, error)
 	err = json.Unmarshal(data, &result)
 	return result, err
 }
+
+type futureSetTxFee chan *response
+
+func (f futureSetTxFee) Receive() (omnijson.SetTxFeeResult, error) {
+	var result omnijson.SetTxFeeResult
+
+	data, err := receive(f)
+	if err != nil {
+		return result, err
+	}
+
+	err = json.Unmarshal(data, &result)
+	return result, err
+}
